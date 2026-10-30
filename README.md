@@ -2,6 +2,8 @@
 
 A UI mod for The Blood of Dawnwalker that displays equipped gear beside the inventory, shop, or storage item being hovered or focused.
 
+[![Item Compare showing a hovered weapon beside its equipped counterpart](promo/Screenshot%202026-09-09%20160528.png)](https://www.nexusmods.com/thebloodofdawnwalker/mods/373)
+
 **v1.2.1 updates Item Compare for Dawnwalker 1.1.** The comparison cards have one heading above the stack. Compatible with Better Quickslots.
 
 - Weapons, armor/clothing, rings, and amulets use the game's matching equipment slots.

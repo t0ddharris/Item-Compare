@@ -1,5 +1,7 @@
 # Explicit source allowlist: game assets, tools, reports and binaries stay local.
 *
+!/promo/
+!/promo/Screenshot 2026-09-09 160528.png
 !/.gitignore
 !/README.md
 !/LICENSE
