@@ -1,0 +1,41 @@
+Item Compare - v1.2.1
+
+- Scroll equipped comparisons together with the hovered item using Left Shift
+  + mouse wheel or the controller's right stick.
+
+- Fix comparison tooltips interfering with Shift + mouse-wheel scrolling and
+  leaving vertical right-stick movement blocked.
+
+v1.2.0
+
+- Update for Dawnwalker 1.1, fixing the startup crash.
+- Preserve the updated game's scrollable tooltips.
+
+v1.1.2
+
+- Add Polish, Korean, and Russian translations for the EQUIPPED heading,
+  using the game's text language.
+- Add an optional Russian-heading download for translation patches that
+  replace English.
+
+v1.1.1
+
+- Fix item descriptions and equipped comparisons staying hidden after buying
+  an item or taking one from storage.
+- Translate the EQUIPPED heading automatically for Simplified Chinese, Spanish,
+  Brazilian Portuguese, German, and Japanese, using the game's text language.
+
+v1.1.0
+
+- Add equipped gear comparisons for merchant stock and stored items, to the left of the
+  hovered tooltip with one EQUIPPED heading.
+
+v1.0.0
+
+First public release.
+
+- Compare weapons, armor/clothing, rings, and amulets with equipped gear.
+- Show both equipped rings in a centered stack with one EQUIPPED heading.
+- Omit empty slots, non-equipment items, and comparisons on equipped hover.
+- Preserve the game's original tooltips and comparison controls.
+

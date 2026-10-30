@@ -1,0 +1,8 @@
+Item Compare Custom Heading - v1.0.1
+
+- Add a text-conversion fallback for UE4SS builds without FText().
+
+v1.0.0
+
+- First release. Choose a custom equipped heading through an optional UE4SS
+  add-on, without replacing the main Item Compare mod.
