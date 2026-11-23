@@ -1,15 +1,29 @@
 # Building your own version
 
-Fork this repository on GitHub, then clone your fork. The main source targets Item Compare 1.2.1 and Dawnwalker 1.1. The optional Custom Heading source is 1.0.1.
+Fork this repository on GitHub, then clone your fork. The main source targets Item Compare 1.2.1 and Dawnwalker 1.1 / 1.2 (Patch 4). The optional Custom Heading source is 1.0.1.
 
 ## Requirements
 
 - Windows and Python 3.12 or later.
 - [UAssetGUI](https://github.com/atenfyr/UAssetGUI) 1.1.0 and [retoc](https://github.com/trumank/retoc) 0.1.5, placed in `development/tools/` with their required dependencies.
 - UAssetGUI portable configuration under `development/tools/Data/`.
-- A matching Dawnwalker 1.1 `.usmap`, pristine extracted `.uasset`/`.uexp` files, and the installed game's `Content/Paks` directory, including `global.utoc` and `global.ucas`.
+- A matching Dawnwalker `.usmap` (dumped with UE4SS), pristine extracted `.uasset`/`.uexp` files, and the game container files including `global.utoc` and `global.ucas`.
 
 Obtain the tools from their upstream projects and follow their extraction and mapping guidance. This repository does not supply game files, mappings, decryption keys, or tool binaries. The extraction root must contain `Dawnwalker/Content/`, including UI dependencies. Do not mix game versions.
+
+### Notes for Update 1.2 / Patch 4
+
+1. **PAK/IoStore Encryption (AES Key):**
+   Update 1.2 containers are encrypted. `retoc` requires passing the game's AES key via `-a 0x...` (which can be obtained from `Dawnwalker.exe`).
+
+2. **Container Path for retoc:**
+   `retoc` expects `global.utoc` to be located next to the main container (`Dawnwalker-Windows.utoc`) to resolve `ScriptObjects`. Point `retoc` to a clean folder holding only the base-game container files (`global.*` and `Dawnwalker-Windows.*`), avoiding active mod containers in `~mods`.
+
+3. **UAssetGUI Portable Configuration (`Data/config.json`):**
+   `UAssetGUI` only loads mappings from `development/tools/Data/Mappings/` in portable mode when `development/tools/Data/config.json` exists and contains `"UAssetGUI"` (e.g. `{"Theme": "UAssetGUI", "FavoriteVersion": "VER_UE5_5"}`). Without this file, UAssetGUI falls back to `%LOCALAPPDATA%\UAssetGUI`, decodes exports as `RawExport`, and causes `prepare_patch11.py` to fail with `AssertionError: tooltip`. `prepare_patch11.py` automatically generates this file if missing.
+
+4. **UI Dependencies:**
+   Extract UI dependencies (such as `_Dawnwalker/UI` as well as referenced audio events and common player input data) before running `prepare_patch11.py`. This ensures UAssetGUI decodes tooltip schemas consistently so `verify_mod.py` succeeds without property casing mismatches.
 
 ## Build
 

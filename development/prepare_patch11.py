@@ -9,7 +9,7 @@ import argparse
 from build_mod import ROOT, SOURCE_ROOT, MAPPING, read, run, write
 
 parser=argparse.ArgumentParser(description=__doc__)
-parser.add_argument('--mapping',type=Path,required=True,help='Fresh .usmap dumped from Dawnwalker 1.1')
+parser.add_argument('--mapping',type=Path,required=True,help='Fresh .usmap dumped from Dawnwalker')
 parser.add_argument('--reuse-extraction',action='store_true')
 parser.add_argument('--extracted-root',type=Path,help='Pristine extracted tree containing Dawnwalker/Content')
 parser.add_argument('--game-paks',type=Path,default=Path('D:/Steam/steamapps/common/The Blood of Dawnwalker/Dawnwalker/Content/Paks'))
@@ -18,6 +18,12 @@ assert args.mapping.is_file(), args.mapping
 mapping_target=SOURCE_ROOT/'tools/Data/Mappings'/(MAPPING+'.usmap')
 mapping_target.parent.mkdir(parents=True,exist_ok=True)
 shutil.copy2(args.mapping,mapping_target)
+
+# Ensure UAssetGUI portable mode configuration exists so it loads tools/Data/Mappings
+config_target = SOURCE_ROOT / 'tools/Data/config.json'
+if not config_target.exists():
+    config_target.parent.mkdir(parents=True, exist_ok=True)
+    config_target.write_text('{"Theme": "UAssetGUI", "FavoriteVersion": "VER_UE5_5"}\n', encoding='utf-8')
 
 stock = SOURCE_ROOT.parent.parent / 'better-quickslots-dawnwalker/development/patch11-stock'
 game = args.game_paks
